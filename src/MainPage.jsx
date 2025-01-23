@@ -110,7 +110,7 @@ function MainPage() {
   
               {model && (
                 <div className="py-10 absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-fuchsia-900 box-border h-screen overflow-y-auto w-4/12 p-4 border-4 bg-white">
+                  {/* <div className="bg-fuchsia-900 box-border h-screen overflow-y-auto w-4/12 p-4 border-4 bg-white"> */}
                     {product.map((products) => {
                       const Cartss = openButton.includes(products.id);
                       if (Cartss) {
@@ -157,7 +157,7 @@ function MainPage() {
                     <div className="w-4/12 relative left-64 bottom-20 text-xl py-2 bg-white px-8 rounded-md">
                       Rs.{calculateTotal()}
                     </div>
-                  </div>
+                  {/* </div> */}
                 </div>
               )}
             </div>
