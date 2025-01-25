@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 function MainPage() {
     const [product, setProducts] = useState([]);
     const [openButton, closeButton] = useState([]);
@@ -49,9 +50,23 @@ function MainPage() {
         .filter((products) => openButton.includes(products.id))
         .reduce(
           (total, products) =>
-            total + parseInt(products.price / 10) * (quantities[products.id] || 1),
+            total + parseInt(Math.ceil(products.price / 10)) * (quantities[products.id] || 1),
           0
         );
+    };
+
+    const removeItem = (id) => {
+      // Update the state to remove the item
+      const updatedProducts = product.filter((item) => item.id !== id);
+      setProducts(updatedProducts);
+    
+      // Optional: Update the quantities and openButton arrays if needed
+      const updatedQuantities = { ...quantities };
+      delete updatedQuantities[id];
+      setQuantities(updatedQuantities);
+    
+      const updatedOpenButton = openButton.filter((itemId) => itemId !== id);
+      closeButton(updatedOpenButton);
     };
   
     return (
@@ -110,7 +125,7 @@ function MainPage() {
   
               {model && (
                 <div className="py-10 absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-fuchsia-900 box-border h-screen overflow-y-auto w-4/12 p-4 border-4 bg-white">
+                  <div className="bg-pink-900 box-border h-screen overflow-y-auto w-4/12 p-4 border-4 bg-white">
                     {product.map((products) => {
                       const Cartss = openButton.includes(products.id);
                       if (Cartss) {
@@ -125,25 +140,27 @@ function MainPage() {
                               {products.category}
                             </h3>
                             <p className="text-right font-semibold relative bottom-40 right-24">
-                              {products.price / 10}
+                              {products.price / 10 *quantities[products.id]}
                             </p>
   
                             <button
                               onClick={() => decrementQuantity(products.id)}
-                              className="bg-fuchsia-200 px-8 my-6 inline-block text-xl text-right relative bottom-40 left-20"
+                              className="bg-fuchsia-200 px-8 my-6 inline-block text-xl text-right relative bottom-40 left-28"
                             >
                               -
                             </button>
-                            <div className="inline-block text-xl px-6 text-right relative bottom-40 left-20">
+                            <div className="inline-block text-xl px-6 text-right relative bottom-40 left-28">
                               {quantities[products.id] || 1}
                             </div>
                             <button
                               onClick={() => incrementQuantity(products.id)}
-                              className="bg-fuchsia-200 px-8 inline-block text-xl text-right relative bottom-40 left-20"
+                              className="bg-fuchsia-200 px-8 inline-block text-xl text-right relative bottom-40 left-28"
                             >
                               +
                             </button>
-                            <hr className="relative bottom-36 border-gray-700" />
+                            <button onClick={()=>removeItem(products.id)} 
+                            className="text-red-700 font-semibold text-xl relative bottom-24 right-10">Remove</button>
+                            <hr className="relative bottom-24 border-gray-700" />
                           </div>
                         );
                       }

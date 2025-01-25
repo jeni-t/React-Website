@@ -3,14 +3,16 @@ import "./App.css";
 import MainPage from "./MainPage.jsx"
 
 function App() {
-
   return (
-    <BrowserRouter>
-    <MainPage/>
-    </BrowserRouter>
-
-
-  )
+       <BrowserRouter>
+       <Routes>
+       <Route index element={<MainPage />}/>
+       </Routes>
+       </BrowserRouter>
+    
+    
+     )
+  
 }
 
 export default App
