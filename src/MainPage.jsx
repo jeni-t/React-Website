@@ -123,7 +123,7 @@ function MainPage() {
   
               {model && (
                 <div className="py-10 absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-pink-900 box-border h-screen overflow-y-auto w-4/12 p-4 border-4">
+                  <div className="bg-fuchsia-800 box-border h-screen overflow-y-auto w-4/12 p-4 border-4">
                     {product.map((products) => {
                       const Cartss = openButton.includes(products.id);
                       if (Cartss) {
