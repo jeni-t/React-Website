@@ -56,11 +56,9 @@ function MainPage() {
     };
 
     const removeItem = (id) => {
-      // Update the state to remove the item
       const updatedProducts = product.filter((item) => item.id !== id);
       setProducts(updatedProducts);
     
-      // Optional: Update the quantities and openButton arrays if needed
       const updatedQuantities = { ...quantities };
       delete updatedQuantities[id];
       setQuantities(updatedQuantities);
