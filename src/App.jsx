@@ -27,6 +27,7 @@ function App() {
               return itemData.filter((id) => id !== itemCart);
             } else {
               setCount(count + 1);
+              console.log()
               setQuantities({ ...quantities, [itemCart]: 1 }); 
               return [...itemData, itemCart];
             }
